@@ -1,0 +1,1011 @@
+animated_background:
+  default_url: https://cdn.flixel.com/flixel/ypy8bw9fgw1zv2b4htp2.hd.mp4
+  included_users:
+    - xxxxx
+  entity: weather.home
+  state_url:
+    sunny:
+      - https://cdn.flixel.com/flixel/8cmeusxf3pkanai43djs.hd.mp4
+      - https://cdn.flixel.com/flixel/guwb10mfddctfvwioaex.hd.mp4
+    partlycloudy:
+      - https://cdn.flixel.com/flixel/5363uhabodwwrzgnq6vx.hd.mp4
+    cloudy:
+      - https://cdn.flixel.com/flixel/5363uhabodwwrzgnq6vx.hd.mp4
+    mostlycloudy:
+      - https://cdn.flixel.com/flixel/e95h5cqyvhnrk4ytqt4q.hd.mp4
+      - https://cdn.flixel.com/flixel/l2bjw34wnusyf5q2qq3p.hd.mp4
+    clear-night:
+      - https://cdn.flixel.com/flixel/x9dr8caygivq5secll7i.hd.mp4
+      - https://cdn.flixel.com/flixel/v26zyfd6yf0r33s46vpe.hd.mp4
+      - https://cdn.flixel.com/flixel/ypy8bw9fgw1zv2b4htp2.hd.mp4
+      - https://cdn.flixel.com/flixel/rosz2gi676xhkiw1ut6i.hd.mp4
+    fog:
+      - https://cdn.flixel.com/flixel/5363uhabodwwrzgnq6vx.hd.mp4
+    rainy: https://cdn.flixel.com/flixel/f0w23bd0enxur5ff0bxz.hd.mp4
+title: Dungeon
+views:
+  - path: default_view
+    title: Home
+    panel: false
+    icon: mdi:home
+    theme: Google Light Theme
+    visible:
+      - user: xxxxxxxxxxxxxxxxxxxxxxxxxxx
+      - user: xxxxxxxxxxxxxxxxxxxxxxxxxxx
+    badges:
+      - entity: person.xxxxx
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: input_boolean.alarm
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: input_boolean.panic
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: input_boolean.alarm_stay
+          - type: button
+            tap_action:
+              action: more-info
+            entity: cover.garage_door
+            hold_action:
+              action: toggle
+          - type: horizontal-stack
+            cards:
+              - type: button
+                tap_action:
+                  action: toggle
+                name: Dyson
+                show_state: false
+                show_icon: true
+                entity: switch.dyson_fan_switch
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: switch.diningroom_fan
+                name: Big Fan
+                show_state: false
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: switch.hvac_fan
+                name: HVAC
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: group.fans
+                name: All
+                show_state: false
+          - type: thermostat
+            entity: climate.thermostat
+          - type: entities
+            entities:
+              - entity: media_player.samsung_tv
+          - type: media-control
+            entity: media_player.google_tv
+          - type: media-control
+            entity: media_player.office_tv
+      - type: vertical-stack
+        cards:
+          - type: entities
+            entities:
+              - entity: input_boolean.welcome_home
+              - entity: input_boolean.extended_welcome
+              - entity: input_boolean.room_announce
+                name: Room Tracker
+              - entity: input_boolean.trigger_announce
+                name: Doors
+            title: Announcements
+            state_color: true
+          - type: entities
+            entities:
+              - entity: switch.livingroom_bluetooth_inquiries
+                name: Livingroom
+                secondary_info: last-changed
+              - entity: switch.office_bluetooth_inquiries
+                name: Office
+                secondary_info: last-changed
+              - entity: input_boolean.follow_mode
+                secondary_info: last-changed
+              - entity: sensor.xxxxx_room_presence
+                secondary_info: last-updated
+              - entity: sensor.xxxxx_room_proximity
+                secondary_info: last-updated
+            show_header_toggle: true
+            state_color: true
+            title: Presence Detection
+          - type: entities
+            entities:
+              - entity: switch.garage_lights
+                name: Garage
+              - type: custom:slider-entity-row
+                entity: light.porch_lights
+                toggle: true
+              - entity: switch.entryway_light
+                name: Entryway
+              - entity: switch.stairwell_light
+                name: Stairwell
+              - type: custom:slider-entity-row
+                entity: light.xxxxxxxx_s_lights
+                name: xxxxxxxx's Lights
+                toggle: true
+              - type: custom:slider-entity-row
+                entity: light.livingroom_lights
+                name: Livingroom
+                toggle: true
+              - type: custom:slider-entity-row
+                entity: light.diningroom
+                name: Dinningroom
+                toggle: true
+              - entity: group.kitchen_lights
+                name: Kitchen
+              - entity: group.office_lights
+                name: Office
+              - entity: switch.hallway_light
+                name: Hallway
+              - type: custom:slider-entity-row
+                entity: light.master_bedroom_lights
+                name: Master
+                toggle: true
+            title: Lights
+            state_color: true
+      - type: entities
+        entities:
+          - entity: switch.garage_cam
+            name: Garage Cam
+            secondary_info: last-changed
+          - entity: switch.kitchen_cam
+            secondary_info: last-changed
+            name: Kitchen Cam
+          - entity: switch.livingroom_cam
+            name: Livingroom Cam
+            secondary_info: last-changed
+          - entity: switch.office_cam
+            secondary_info: last-changed
+            name: Office Cam
+        title: Cameras
+      - type: vertical-stack
+        cards:
+          - type: entity-filter
+            card:
+              type: glance
+              title: Doors
+            show_empty: false
+            entities:
+              - entity: binary_sensor.front_door
+                name: Front Door
+              - entity: binary_sensor.patio_door
+                name: Patio Door
+              - entity: binary_sensor.garage_door_sensor
+                name: Garage Door Webhook
+              - entity: binary_sensor.garage_door
+                name: Garage Door WyzeApp
+            state_filter:
+              - 'on'
+          - type: entity-filter
+            card:
+              type: glance
+              title: Motion
+            show_empty: false
+            entities:
+              - entity: binary_sensor.guestroom_motion
+                name: xxxxxxxx Motion
+              - entity: binary_sensor.kitchen_motion
+                name: Kitchen
+              - entity: binary_sensor.kitchen_cam_motion
+                name: Kitchen Cam
+              - entity: binary_sensor.master_bedroom_motion
+                name: Master
+              - entity: binary_sensor.master_closet_motion
+                name: Closet
+              - entity: binary_sensor.office_motion
+                name: Office
+              - entity: binary_sensor.office_cam_motion
+                name: Office Cam
+              - entity: binary_sensor.livingroom_cam_motion
+                name: Livingroom Cam
+              - entity: binary_sensor.garage_cam_motion
+                name: Garage Cam
+            state_filter:
+              - 'on'
+          - type: entity-filter
+            card:
+              type: glance
+              title: Lights
+            show_empty: false
+            entities:
+              - entity: light.flood_lamp
+                name: Flood Lamp
+              - entity: light.iris
+                name: Iris
+              - entity: light.tv_right
+                name: TV Right
+              - entity: light.tv_left
+                name: TV Left
+              - entity: light.couch
+                name: Couch
+              - entity: light.livingroom_dimmer
+                name: Livingroom
+              - entity: switch.kitchen_light
+                name: Kitchen
+              - entity: switch.kitchen_cabinet_lights
+                name: Cabinets
+              - entity: light.master_bedroom_right
+                name: Master Right
+              - entity: light.master_bedroom_left
+                name: Master Left
+              - entity: light.master_closet
+                name: Closet
+              - entity: light.guestroom
+                name: Guestroom
+              - entity: light.xxxxxxxx_lamp
+                name: xxxxxxxx Light
+              - entity: light.nanoleaf
+                name: Nanoleaf
+              - entity: switch.hallway_light
+                name: Hallway
+              - entity: switch.stairwell_light
+                name: Stairwell
+              - entity: switch.office_lamp
+                name: Office Floor
+              - entity: light.office_high_light
+                name: Office High
+              - entity: switch.desk_lamp
+                name: Office Desk
+              - entity: light.dining_room
+                name: Diningroom
+              - entity: switch.entryway_light
+                name: Entryway
+              - entity: light.porch_lights
+                name: Porch
+              - entity: switch.garage_lights
+                name: Garage
+            state_filter:
+              - 'on'
+          - type: entity-filter
+            card:
+              type: glance
+              title: Media
+            show_empty: false
+            entities:
+              - entity: media_player.samsung_tv
+                name: Samsung TV
+              - entity: media_player.google_tv
+                name: Google TV
+              - entity: media_player.office_tv
+                name: Office TV
+              - entity: media_player.xxxxxxxx_tv
+                name: xxxxxxxx TV
+              - entity: media_player.kitchen_speaker
+                name: Kitchen Speaker
+              - entity: media_player.livingroom_display
+                name: Livingroom Speaker
+              - entity: media_player.office_speaker
+                name: Office Speaker
+              - entity: media_player.master_bedroom_speaker
+                name: Master Speaker
+            state_filter:
+              - 'on'
+              - playing
+              - idle
+          - type: entity-filter
+            card:
+              type: glance
+              title: Fans
+            show_empty: false
+            entities:
+              - entity: switch.diningroom_fan
+                name: Big Fan
+              - entity: switch.dyson_fan_switch
+                name: Dyson
+              - entity: switch.hvac_fan
+                name: HVAC
+            state_filter:
+              - 'on'
+          - type: entity-filter
+            card:
+              type: glance
+              title: Power
+            show_empty: false
+            entities:
+              - entity: switch.charger
+                name: Charger
+              - entity: binary_sensor.upsstatus
+                name: RPi UPS Power
+                icon: mdi:ev-station
+            state_filter:
+              - 'on'
+          - type: entity-filter
+            card:
+              type: glance
+              title: Cameras
+            show_empty: false
+            entities:
+              - entity: switch.kitchen_cam
+                name: Kitchen Cam
+              - entity: switch.office_cam
+                name: Office Cam
+              - entity: switch.livingroom_cam
+                name: Livingroom Cam
+              - entity: switch.garage_cam
+                name: Garage Cam
+            state_filter:
+              - 'on'
+          - type: entity-filter
+            card:
+              type: glance
+            show_empty: false
+            entities:
+              - entity: light.flood_lamp
+                name: Flood Lamp
+              - entity: light.iris
+                name: Iris
+              - entity: light.tv_right
+                name: TV Right
+              - entity: light.tv_left
+                name: TV Left
+              - entity: light.couch
+                name: Couch
+              - entity: light.livingroom_dimmer
+                name: Livingroom
+              - entity: light.diningroom
+                name: Diningroom
+              - entity: switch.kitchen_light
+                name: Kitchen
+              - entity: switch.kitchen_cabinet_lights
+                name: Cabinets
+              - entity: light.master_bedroom_right
+                name: Master Right
+              - entity: light.master_bedroom_left
+                name: Master Left
+              - entity: light.master_closet
+                name: Closet
+              - entity: light.guestroom
+                name: Guestroom
+              - entity: light.xxxxxxxx_lamp
+                name: xxxxxxxx Light
+              - entity: light.nanoleaf
+                name: Nanoleaf
+              - entity: switch.hallway_light
+                name: Hallway
+              - entity: switch.stairwell_light
+                name: Stairwell
+              - entity: switch.office_lamp
+                name: Office Floor
+              - entity: light.office_high_light
+                name: Office High
+              - entity: switch.desk_lamp
+                name: Office Desk
+              - entity: light.dining_room
+                name: Diningroom
+              - entity: switch.entryway_light
+                name: Entryway
+              - entity: light.porch_lights
+                name: Porch
+              - entity: switch.garage_lights
+                name: Garage
+              - entity: switch.diningroom_fan
+                name: Big Fan
+              - entity: switch.dyson_fan_switch
+                name: Dyson
+              - entity: switch.hvac_fan
+                name: HVAC
+              - entity: switch.charger
+                name: Charger
+              - entity: binary_sensor.front_door
+                name: Front Door
+              - entity: binary_sensor.patio_door
+                name: Patio Door
+              - entity: binary_sensor.garage_door_sensor
+                name: Garage Door 1
+              - entity: binary_sensor.garage_door
+                name: Garage Door
+                icon: mdi:garage-open
+              - entity: binary_sensor.guestroom_motion
+                name: xxxxxxxx Motion
+              - entity: binary_sensor.kitchen_motion
+                name: Kitchen
+              - entity: binary_sensor.kitchen_cam_motion
+                name: Kitchen Cam
+              - entity: binary_sensor.master_bedroom_motion
+                name: Master
+              - entity: binary_sensor.master_closet_motion
+                name: Closet
+              - entity: binary_sensor.office_motion
+                name: Office
+              - entity: switch.office_cam
+                name: Office Cam
+              - entity: switch.garage_cam
+                name: Garage Cam
+              - entity: switch.livingroom_cam
+                name: Livingroom Cam
+              - entity: switch.kitchen_cam
+                name: Kitchen Cam
+              - entity: media_player.samsung_tv
+                name: Samsung TV
+              - entity: media_player.livingroom_tv
+                name: Google TV
+              - entity: media_player.office_tv
+                name: Office TV
+            state_filter:
+              - unavailable
+  - title: Climate
+    path: climate
+    icon: mdi:thermostat
+    theme: Google Light Theme
+    visible:
+      - user: xxxxxxxxxxxxxxxxxxxxxxxxxxx
+      - user: xxxxxxxxxxxxxxxxxxxxxxxxxxx
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: thermostat
+            entity: climate.thermostat
+          - type: horizontal-stack
+            cards:
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: input_boolean.fan_control
+                name: Temp Control
+                show_state: true
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: input_boolean.hvac_assist
+                show_state: true
+          - type: horizontal-stack
+            cards:
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: switch.dyson_fan_switch
+                name: Dyson
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: switch.diningroom_fan
+                name: Big Fan
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: switch.hvac_fan
+                name: HVAC
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: group.fans
+                name: All
+          - type: entities
+            entities:
+              - entity: fan.hallway
+              - entity: switch.hallway_auto_mode
+              - entity: switch.dyson_fan_oscillate
+              - entity: switch.hallway_continuous_monitoring
+              - entity: switch.hallway_night_mode
+              - entity: sensor.hallway_fan_speed
+              - entity: air_quality.hallway_air_quality
+              - entity: sensor.hallway_filter_life
+                secondary_info: last-updated
+            state_color: true
+            show_header_toggle: false
+          - type: entities
+            entities:
+              - entity: sensor.hvac_fan_mode
+                icon: mdi:hvac
+                secondary_info: last-changed
+              - entity: sensor.hvac_fan_status
+                icon: mdi:hvac
+                secondary_info: last-changed
+              - entity: binary_sensor.thermostat_occupancy
+                secondary_info: last-changed
+              - entity: binary_sensor.master_occupancy
+                secondary_info: last-changed
+            state_color: true
+            show_header_toggle: false
+      - type: vertical-stack
+        cards:
+          - type: custom:sun-card
+            darkMode: false
+          - type: custom:weather-card
+            number_of_forecasts: '5'
+            entity: weather.dungeon
+          - type: custom:apexcharts-card
+            apex_config:
+              chart:
+                height: 200px
+            header:
+              show: true
+              title: Indoor Temps
+              show_states: true
+              colorize_states: true
+            series:
+              - entity: sensor.hallway_temperature
+                name: Hallway
+                stroke_width: 3
+              - entity: sensor.master_temperature
+                name: Master
+                stroke_width: 3
+              - entity: sensor.thermostat_temperature
+                name: Main Floor
+                stroke_width: 3
+          - type: custom:apexcharts-card
+            apex_config:
+              chart:
+                height: 200px
+            header:
+              show: true
+              title: Humidity
+              show_states: true
+              colorize_states: true
+            series:
+              - entity: sensor.hallway_humidity
+                name: Hallway
+                stroke_width: 3
+              - entity: sensor.outside_humidity
+                name: Outside
+                stroke_width: 3
+              - entity: sensor.thermostat_humidity
+                name: Main Floor
+                stroke_width: 3
+  - title: 'Master '
+    path: master-bedroom
+    icon: mdi:bed
+    theme: Google Light Theme
+    visible:
+      - user: xxxxxxxxxxxxxxxxxxxxxxxxxxx
+    badges: []
+    cards:
+      - type: picture-glance
+        title: Master Bedroom
+        image: https://demo.home-assistant.io/stub_config/bedroom.png
+        entities:
+          - entity: sensor.master_bedroom_light_level
+          - entity: binary_sensor.master_bedroom_motion
+          - entity: sensor.master_bedroom_temperature
+          - entity: media_player.master_bedroom_speaker
+        entity: group.master_bedroom_lights
+        tap_action:
+          action: toggle
+      - type: horizontal-stack
+        cards:
+          - type: button
+            tap_action:
+              action: toggle
+            entity: light.master_bedroom_left
+            name: Left
+            show_state: true
+          - type: button
+            tap_action:
+              action: toggle
+            entity: light.master_closet
+            name: Closet
+            show_state: true
+          - type: button
+            tap_action:
+              action: toggle
+            entity: light.master_bedroom_right
+            name: Right
+            show_state: true
+      - type: entities
+        entities:
+          - entity: sensor.master_bedroom_temperature
+            name: Master Temperature (Hue)
+            secondary_info: last-updated
+          - entity: sensor.master_temperature
+            name: Master Temperature (ecobee)
+            secondary_info: last-updated
+          - entity: sensor.master_closet_temperature
+            secondary_info: last-updated
+          - entity: sensor.master_bedroom_light_level
+            secondary_info: last-updated
+          - entity: sensor.master_closet_light_level
+            secondary_info: last-updated
+          - entity: binary_sensor.master_closet_motion
+            secondary_info: last-updated
+          - entity: binary_sensor.master_bedroom_motion
+            secondary_info: last-updated
+          - entity: sensor.master_motion_battery_level
+            secondary_info: last-updated
+          - entity: sensor.master_closet_motion_battery_level
+            secondary_info: last-updated
+        title: Master Bedroom
+        show_header_toggle: false
+        state_color: false
+  - title: Control Unit
+    path: control-unit
+    icon: mdi:power
+    theme: Google Light Theme
+    visible:
+      - user: xxxxxxxxxxxxxxxxxxxxxxxxxxx
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: entities
+            entities:
+              - entity: input_boolean.charger_control
+                name: Power Management
+                secondary_info: last-changed
+              - entity: switch.charger
+                secondary_info: last-changed
+              - entity: binary_sensor.n7_51a_is_charging
+                name: Charging
+                secondary_info: last-changed
+              - entity: sensor.n7_51a_battery_level
+                name: Battery Level
+                secondary_info: last-updated
+              - entity: sensor.n7_51a_battery_temperature
+                name: Battery Temp
+                icon: mdi:fire
+                secondary_info: last-updated
+              - entity: sensor.n7_51a_battery_health
+                name: Health
+                secondary_info: last-updated
+            title: Control Unit
+            show_header_toggle: false
+            state_color: true
+          - type: sensor
+            entity: sensor.n7_51a_battery_level
+            graph: line
+            detail: 2
+            hours_to_show: 12
+            name: Battery Level - (12hrs)
+          - type: sensor
+            entity: sensor.n7_51a_battery_temperature
+            graph: line
+            hours_to_show: 12
+            detail: 2
+            name: Battery Temperature - (12hrs)
+            icon: mdi:fire
+  - icon: mdi:network
+    title: Network
+    path: network
+    theme: Google Light Theme
+    visible:
+      - user: xxxxxxxxxxxxxxxxxxxxxxxxxxx
+      - user: xxxxxxxxxxxxxxxxxxxxxxxxxxx
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: entities
+            entities:
+              - entity: sensor.network_in_wlan0
+              - entity: sensor.network_out_wlan0
+              - entity: sensor.packets_in_wlan0
+              - entity: sensor.packets_out_wlan0
+            title: RPi Networking
+            show_header_toggle: false
+            state_color: false
+          - type: history-graph
+            entities:
+              - entity: sensor.ipv4_address_wlan0
+            hours_to_show: 24
+            refresh_interval: 0
+          - type: custom:apexcharts-card
+            graph_span: 1h
+            apex_config:
+              chart:
+                height: 200px
+            header:
+              show: true
+              title: Thoroughput
+              show_states: true
+              colorize_states: true
+            series:
+              - entity: sensor.network_throughput_in_wlan0
+                name: IN
+                stroke_width: 3
+              - entity: sensor.network_throughput_out_wlan0
+                name: OUT
+                stroke_width: 3
+      - type: vertical-stack
+        cards:
+          - type: entity
+            entity: sensor.google_wifi_status
+            name: Google Wifi Status
+          - type: entities
+            entities:
+              - entity: sensor.google_wifi_current_version
+              - entity: sensor.google_wifi_last_restart
+              - entity: sensor.google_wifi_new_version
+              - entity: sensor.google_wifi_uptime
+          - type: history-graph
+            entities:
+              - entity: sensor.google_wifi_local_ip
+            hours_to_show: 24
+            refresh_interval: 0
+            title: Public IP
+  - title: System Monitor
+    path: system-monitor
+    icon: mdi:raspberry-pi
+    panel: false
+    theme: Google Light Theme
+    visible:
+      - user: xxxxxxxxxxxxxxxxxxxxxxxxxxx
+      - user: xxxxxxxxxxxxxxxxxxxxxxxxxxx
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.processor_temperature
+                min: 0
+                severity:
+                  green: 0
+                  yellow: 45
+                  red: 85
+                max: 88
+                name: RPi CPU Temp
+                unit: °C
+              - type: gauge
+                entity: sensor.processor_use_percent
+                min: 0
+                max: 100
+                name: RPi CPU Use
+                severity:
+                  green: 0
+                  yellow: 25
+                  red: 75
+          - type: history-graph
+            entities:
+              - entity: sensor.processor_temperature
+              - entity: sensor.processor_use_percent
+              - entity: sensor.rpi_cpu_freq
+            refresh_interval: 0
+            hours_to_show: 3
+            title: RPi CPU Stats
+          - type: custom:apexcharts-card
+            graph_span: 3h
+            apex_config:
+              chart:
+                height: 200px
+            header:
+              show: true
+              title: CPU Loads
+              show_states: true
+              colorize_states: true
+            series:
+              - entity: sensor.load_1m
+                name: Load (1m)
+                stroke_width: 3
+              - entity: sensor.load_5m
+                name: Load (5m)
+                stroke_width: 3
+              - entity: sensor.load_15m
+                name: Load (15m)
+                stroke_width: 3
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.disk_use_percent
+                min: 0
+                max: 100
+                name: Disk Use
+                theme: aqua-fiesta
+                severity:
+                  green: 0
+                  yellow: 50
+                  red: 100
+              - type: gauge
+                entity: sensor.memory_use_percent
+                min: 0
+                max: 100
+                name: Ram Use
+                theme: aqua-fiesta
+                severity:
+                  green: 0
+                  yellow: 50
+                  red: 100
+              - type: gauge
+                entity: sensor.swap_use_percent
+                min: 0
+                max: 100
+                name: Swap Use
+                theme: aqua-fiesta
+                severity:
+                  green: 0
+                  yellow: 50
+                  red: 100
+          - type: custom:apexcharts-card
+            graph_span: 3h
+            apex_config:
+              chart:
+                height: 200px
+            header:
+              show: true
+              title: RPi Ram and Disk
+              show_states: true
+              colorize_states: true
+            series:
+              - entity: sensor.disk_use_percent
+                name: Disk
+                stroke_width: 3
+              - entity: sensor.memory_use_percent
+                name: Memory
+                stroke_width: 3
+              - entity: sensor.swap_use_percent
+                name: Swap
+                stroke_width: 3
+          - type: entities
+            entities:
+              - entity: sensor.disk_use_percent
+                secondary_info: last-updated
+              - entity: sensor.memory_use_percent
+                secondary_info: last-updated
+              - entity: sensor.swap_use_percent
+                secondary_info: last-updated
+            state_color: true
+            show_header_toggle: false
+          - type: entities
+            entities:
+              - entity: sensor.disk_use
+                secondary_info: last-updated
+              - entity: sensor.memory_use
+                secondary_info: last-updated
+              - entity: sensor.swap_use
+                secondary_info: last-updated
+            show_header_toggle: false
+            state_color: true
+          - type: entities
+            entities:
+              - entity: sensor.disk_free
+                secondary_info: last-updated
+              - entity: sensor.memory_free
+                secondary_info: last-updated
+              - entity: sensor.swap_free
+                secondary_info: last-updated
+            show_header_toggle: false
+            state_color: true
+          - type: entities
+            entities:
+              - entity: sensor.home_assistant_v2_db
+                name: SQLite DB Size
+                icon: mdi:database
+                secondary_info: last-updated
+              - entity: sensor.db_size
+                name: MariaDB Size
+                secondary_info: last-updated
+                icon: mdi:database
+            show_header_toggle: false
+            state_color: true
+          - type: entities
+            entities:
+              - entity: sensor.last_boot
+            show_header_toggle: false
+            state_color: true
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.rpi_battery_capacity
+                min: 0
+                max: 100
+                severity:
+                  green: 90
+                  yellow: 50
+                  red: 0
+              - type: gauge
+                entity: sensor.rpi_battery_voltage
+                max: 4.2
+                min: 3
+                severity:
+                  green: 4.2
+                  yellow: 3.7
+                  red: 3.2
+          - type: entities
+            entities:
+              - entity: input_boolean.power_alert
+            state_color: true
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.rpi_battery_capacity
+            name: RPi UPS Voltage
+            hours_to_show: 3
+            points_per_hour: 10
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.rpi_battery_voltage
+            name: RPi UPS Voltage
+            hours_to_show: 3
+            points_per_hour: 10
+          - type: entities
+            entities:
+              - entity: binary_sensor.rpi_power_status
+                secondary_info: last-changed
+                icon: mdi:power-plug
+              - entity: binary_sensor.upsstatus
+                icon: mdi:ev-station
+                secondary_info: last-changed
+                name: RPi UPS Power
+              - entity: sensor.upsbatterycapacity
+                name: RPi UPS Capacity
+                secondary_info: last-changed
+                icon: mdi:battery
+              - entity: sensor.upsbatteryvoltage
+                name: RPi UPS Voltage
+                icon: mdi:flash
+                secondary_info: last-changed
+            state_color: true
+            show_header_toggle: false
+  - title: Battery
+    path: batteries
+    panel: false
+    icon: mdi:battery
+    visible:
+      - user: xxxxxxxxxxxxxxxxxxxxxxxxxxx
+      - user: xxxxxxxxxxxxxxxxxxxxxxxxxxx
+    theme: Google Light Theme
+    badges: []
+    cards:
+      - type: gauge
+        entity: sensor.front_door_battery_level
+        min: 0
+        max: 100
+        severity:
+          green: 75
+          yellow: 25
+          red: 0
+      - type: gauge
+        entity: sensor.master_bedroom_switch_battery_level
+        min: 0
+        max: 100
+        severity:
+          green: 75
+          yellow: 25
+          red: 0
+      - type: gauge
+        min: 0
+        max: 100
+        severity:
+          green: 75
+          yellow: 25
+          red: 0
+        entity: sensor.patio_door_battery_level
+      - type: gauge
+        entity: sensor.master_closet_motion_battery_level
+        min: 0
+        max: 100
+        severity:
+          green: 75
+          yellow: 25
+          red: 0
+      - type: gauge
+        entity: sensor.kitchen_motion_battery_level
+        min: 0
+        max: 100
+        severity:
+          green: 75
+          yellow: 25
+          red: 0
+      - type: gauge
+        entity: sensor.master_motion_battery_level
+        min: 0
+        max: 100
+        severity:
+          green: 75
+          yellow: 25
+          red: 0
+      - type: gauge
+        entity: sensor.hue_dimmer_switch_1_battery_level
+        min: 0
+        max: 100
+        severity:
+          green: 75
+          yellow: 25
+          red: 0
+        name: xxxxxxxx's Dimmer Battery Level
